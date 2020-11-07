@@ -6,6 +6,7 @@ from time import sleep
 from datetime import datetime
 import requests
 import json
+import hashlib
 
 # Start Up
 print("Crypto trading bot 0.35")
