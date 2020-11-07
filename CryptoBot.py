@@ -17,8 +17,6 @@ time = str(datetime.now().time())[:8]
 secrets = open("secrets.txt", "r")
 gmail_username = secrets.readline()
 gmail_password = secrets.readline()
-print(gmail_username)
-
 
 
 def smtp_send(sender, recipient, subject, body='test'):
