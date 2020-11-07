@@ -13,8 +13,13 @@ print("Crypto trading bot 0.35")
 time = str(datetime.now().time())[:8]
 
 # Email login
-gmail_username = ''
-gmail_password = ''
+
+secrets = open("secrets.txt", "r")
+gmail_username = secrets.readline()
+gmail_password = secrets.readline()
+print(gmail_username)
+
+
 
 def smtp_send(sender, recipient, subject, body='test'):
     server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
@@ -28,12 +33,12 @@ def smtp_send(sender, recipient, subject, body='test'):
     print("\nEmail sent successfully!")
     server.quit()
 
-recipient = ('') # for email notifications and updates
+recipient = secrets.readline() # for email notifications and updates
 
 
 #Test API connection
 try:
-    price = requests.get('https://api.binance.com/api/v3/ping ').json()
+    price = requests.get('https://api.binance.com/api/v3/ping').json()
     # sell_price = price['prices']['btc']['bid']
     # buy_price = price['prices']['btc']['ask']
     # print('\nBuy price: ' + str(buy_price) + '\nSell price: ' + str(sell_price))
