@@ -1,0 +1,83 @@
+#Get time & start getting prices
+
+repeat:
+
+    time = str(datetime.now().time())[:-10]
+    if time == "7:10":
+        quit()
+
+    if time[3:] == "00" or "15" or "30" or "45":
+        print("***BTC buy quote = BTC_buy & BTC sell quote = BTC_sell ---> Write each price to new line in files***\n")
+
+    ***Get balance of AUD and BTC wallets***
+    ***BTC_wallet = (get BTC balance)***
+    ***AUD_wallet = (get AUD balance)***
+    ***if BTC_wallet > 0.001 and AUD_wallet < 10: trade_mode = sell_BTC***
+    ***if AUD_wallet > 10 and BTC_wallet < 0.001: trade_mode = buy_BTC***
+    trade_mode = "sell_BTC"
+    
+    if trade_mode == "sell_BTC":
+        ***get last " + str(moving_avg_points) + " sell prices from file***
+        sell_moving_avg_list = get last (moving_avg_points) lines from "sell" file and remove trailing newline
+        ***calculate average price (average_BTC_sell = add up all and divide by moving_avg_points)***
+        for i in range(moving_avg_points):
+                sell_moving_avg = int(sell_moving_avg_list[i-1]) + int(sell_moving_avg)
+        sell_moving_avg = int(sell_moving_avg)/int(moving_avg_points)
+                
+        ***if BTC_sell > average_BTC_sell: place sell order ***
+
+        if BTC_sell < current price
+        emailSubject = ("Sell order placed.")
+        emailContent = ("A sell order was place at (time) for (btc)
+        sender.sendmail(sendTo, emailSubject, emailContent)
+        print("Email notification sent. \n")
+
+    if trade_mode == "buy_BTC":
+        ***get last " + str(moving_avg_points) + " sell prices from file***
+        buy_moving_avg_list = [get last (moving_avg_points) lines from "buy" file and remove trailing newline]
+        ***calculate average price (average_BTC_sell = add up all and divide by moving_avg_points)***
+        for i in range(moving_avg_points):
+                buy_moving_avg = int(buy_moving_avg_list[i-1]) + int(buy_moving_avg)
+        buy_moving_avg = int(buy_moving_avg)/int(moving_avg_points)
+        ***if BTC_sell > average_BTC_sell: place sell order ***
+    
+        emailSubject = ("Buy order placed.")
+        emailContent = ("A buy order was placed at " + time + ".          (" + trade_mode + ")")
+        sender.sendmail(sendTo, emailSubject, emailContent)
+        print("Email notification sent. \n")
+    
+
+
+    if time[3:] == "59" or "14" or "29" or "44":
+        ***See if there are any outstanding orders, if there are, cancel them.***
+        
+      
+      
+    sleep(120)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+plan for neural network/machine learning rig:
+
+1. cheap pc with used parts and spend lots on a brand new gpu
+2. cheap pc with used parts and spend lots on a used gpu
+3. cheap pc with low end new parts and spend lots on a new gpu
+4. cheap pc with low end new parts and spend lots on a used gpu
+5. buy a crappy old used pc and slap a graphics card in it
+6. buy a crappy old laptop and get a mPCIe adapter, power supply (which i can re-use for the gaming pc when i build it) and a decent graphics card
+7. use mac mini/old laptop and get a mPCIe adapter, power supply (which i can re-use for the gaming pc when i build it) and a decent graphics card
+8. wait to save up for a decent gaming pc
+9. pay for cloud compute
+10. use school "gaming" laptops
