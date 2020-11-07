@@ -1,0 +1,1 @@
+Crypto trader is a project to create a neural network model from scratch in Python, trained on data collected by a Python script, and another program to make trading decisions and execute trades based upon output from the Neural Network.
