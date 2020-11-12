@@ -19,5 +19,5 @@ time = str(datetime.now().time())[:5]
   
 
 # buy_price = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
-buy_price = json.dumps(requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json(), indent=4)
-print(buy_price)
+data = json.dumps(requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json(), indent=4)
+print(data)
