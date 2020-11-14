@@ -22,7 +22,7 @@ def get_data():
     # print(previous_sell)
 
     time = str(datetime.now().time())[:5]
-    print("Time: " + time + '\n')
+    print("\n\nTime: " + time + '\n')
 
     data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
 
