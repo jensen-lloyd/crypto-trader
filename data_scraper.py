@@ -8,18 +8,21 @@ try:
 except:
     print("Connection failed")
 
+
 time = str(datetime.now().time())[:5]
 
 
-def get_data():
 
-    time = str(datetime.now().time())[:5]
+def get_data():
 
     # previous_buy_price = bid_price
     # print(previous_buy)
 
     # previous_sell_price = ask_price
     # print(previous_sell)
+
+    time = str(datetime.now().time())[:5]
+    print("Time: " + time + '\n')
 
     data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
 
@@ -65,15 +68,30 @@ def get_data():
     quote_volume = data["quoteVolume"]
     print(quote_volume) 
 
-    # sleep(299)
-    
-    if time == "6:58":
+
+
+def main():
+
+    time = str(datetime.now().time())[:5]
+
+    if time == "6:50":
         exit()
 
-
-
-
-time = str(datetime.now().time())[:5]
-
-if time[3:] == "0" or "5":
+    if time[4:] == "0":
         get_data()
+
+    if time[4:] == "15":
+        get_data()
+
+    if time[4:] == "30":
+        get_data()
+
+    if time[4:] == "45":
+        get_data()
+
+    sleep(60)
+
+
+        
+while True:
+    main()
