@@ -77,16 +77,16 @@ def main():
     if time == "6:50":
         exit()
 
-    if time[4:] == "0":
+    if time[3:] == "0":
         get_data()
 
-    if time[4:] == "15":
+    if time[3:] == "15":
         get_data()
 
-    if time[4:] == "30":
+    if time[3:] == "30":
         get_data()
 
-    if time[4:] == "45":
+    if time[3:] == "45":
         get_data()
 
     sleep(60)
