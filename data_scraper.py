@@ -2,6 +2,8 @@ import requests
 import json
 from datetime import datetime
 from time import sleep
+import csv
+
 
 try:
     requests.get('https://api.binance.com/api/v3/ping').json()
@@ -15,14 +17,19 @@ time = str(datetime.now().time())[:5]
 
 def get_data():
 
-    # previous_buy_price = bid_price
-    # print(previous_buy)
-
-    # previous_sell_price = ask_price
-    # print(previous_sell)
-
     time = str(datetime.now().time())[:5]
     print("\n\nTime: " + time + '\n')
+
+    with open('BTCAUD_data.csv', mode='r') as BTCAUD_data:
+        reader = csv.reader(BTCAUD_data, delimiter=',')
+        data = list(reader)[-1]
+
+    previous_buy_price = data[5]
+    previous_sell_price = data[7]
+
+    print(previous_sell_price)
+    print(previous_buy_price)
+
 
     data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
 
@@ -66,7 +73,16 @@ def get_data():
     print(trading_volume)
 
     quote_volume = data["quoteVolume"]
-    print(quote_volume) 
+    print(quote_volume)
+
+
+    with open('BTCAUD_data.csv', mode='w') as BTCAUD_data:
+        writer = csv.writer(BTCAUD_data, delimiter=',')
+
+        writer.writerow([previous_buy_price, previous_sell_price])
+
+        writer.writerow([raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
+
 
 
 
@@ -88,6 +104,10 @@ def main():
 
     if time[3:] == "45":
         get_data()
+
+
+    
+
 
     sleep(60)
 
