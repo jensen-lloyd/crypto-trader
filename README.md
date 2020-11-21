@@ -15,12 +15,10 @@ simply edit the "symbol" variable (line 16) to whatever trading pair you have de
 I have written in an automatic close at "6:50" AM, this is because I wish to reboot my machine then, if you do not wish for the program to close daily,
 then remove these 2 lines
 
-"
 
 if time == "6:50": 
 
   exit()
   
-  "
   
 in lines 116 & 117. You could also change the time if you wish.
