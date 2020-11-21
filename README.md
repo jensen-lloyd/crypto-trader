@@ -16,9 +16,9 @@ I have written in an automatic close at "6:50" AM, this is because I wish to reb
 then remove these 2 lines
 
 
-if time == "6:50": 
+    if time == "6:50": 
 
-    exit()
+        exit()
   
   
 in lines 116 & 117. You could also change the time if you wish.
