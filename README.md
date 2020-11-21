@@ -13,7 +13,7 @@ To use "data_scraper.py" (to get data from Binance API to train our Neural Netwo
 simply edit the "symbol" variable (line 16) to whatever trading pair you have decided to use, personally, I am using "BTCAUD".
 
 I have written in an automatic close at "6:50" AM, this is because I wish to reboot my machine then, if you do not wish for the program to close daily,
-then remove these 2 lines
+then remove the following lines: (116 & 117).
 
 
     if time == "6:50": 
@@ -21,4 +21,4 @@ then remove these 2 lines
         exit()
   
   
-in lines 116 & 117. You could also change the time if you wish.
+You could also change the time in line 116 if you wish.
