@@ -13,7 +13,7 @@ except:
 
 time = str(datetime.now().time())[:5]
 
-
+symbol = "BTCAUD"
 
 def get_data():
 
@@ -26,7 +26,7 @@ def get_data():
             data = list(reader)[-1]
 
     except:
-        data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
+        data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": symbol}).json()
 
         raw_price_change = data["priceChange"]
         price_change_percent = data["priceChangePercent"]
@@ -57,7 +57,7 @@ def get_data():
     print(previous_sell_price)
     print(previous_buy_price)
 
-    data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
+    data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": symbol}).json()
 
     raw_price_change = data["priceChange"]
     print(raw_price_change)
