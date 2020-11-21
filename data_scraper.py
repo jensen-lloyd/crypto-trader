@@ -20,16 +20,42 @@ def get_data():
     time = str(datetime.now().time())[:5]
     print("\n\nTime: " + time + '\n')
 
+    try:
+        with open('BTCAUD_data.csv', mode='r') as BTCAUD_data:
+            reader = csv.reader(BTCAUD_data, delimiter=',')
+            data = list(reader)[-1]
+
+    except:
+        data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
+
+        raw_price_change = data["priceChange"]
+        price_change_percent = data["priceChangePercent"]
+        weighted_avg = data["weightedAvgPrice"]
+        last_price = data["lastPrice"]
+        last_qty = data["lastQty"]
+        bid_price = data["bidPrice"]
+        bid_qty = data["bidQty"]
+        ask_price = data["askPrice"]
+        ask_qty = data["askQty"]
+        open_price = data["openPrice"]
+        high_price = data["highPrice"]
+        low_price = data["lowPrice"]
+        trading_volume = data["volume"]
+        quote_volume = data["quoteVolume"]
+
+        with open('BTCAUD_data.csv', mode='a', newline='') as BTCAUD_data:
+            writer = csv.writer(BTCAUD_data)
+            writer.writerow(["0", "0", raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
+
     with open('BTCAUD_data.csv', mode='r') as BTCAUD_data:
         reader = csv.reader(BTCAUD_data, delimiter=',')
         data = list(reader)[-1]
 
-    previous_buy_price = data[5]
-    previous_sell_price = data[7]
+    previous_buy_price = data[6]
+    previous_sell_price = data[8]
 
     print(previous_sell_price)
     print(previous_buy_price)
-
 
     data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": "BTCAUD"}).json()
 
@@ -76,12 +102,11 @@ def get_data():
     print(quote_volume)
 
 
-    with open('BTCAUD_data.csv', mode='w') as BTCAUD_data:
-        writer = csv.writer(BTCAUD_data, delimiter=',')
+    with open('BTCAUD_data.csv', mode='a', newline='') as BTCAUD_data:
+        writer = csv.writer(BTCAUD_data)
 
-        writer.writerow([previous_buy_price, previous_sell_price])
-        writer.writerow([raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
-
+        writer.writerow([bid_price, ask_price])
+        writer.writerow([previous_buy_price, previous_sell_price, raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
 
 
 def main():
@@ -91,7 +116,7 @@ def main():
     if time == "6:50":
         exit()
 
-    if time[3:] == "0":
+    if time[3:] == "00":
         get_data()
 
     if time[3:] == "15":
@@ -103,10 +128,8 @@ def main():
     if time[3:] == "45":
         get_data()
 
-
     sleep(60)
 
-
-        
+    
 while True:
     main()
