@@ -21,4 +21,4 @@ If you do not wish for the program to close daily, then remove the following lin
         exit()
   
   
-You could also change the time in line 116 if you wish.
+You could also change the value in line 116 if you wish to reboot at a different time.
