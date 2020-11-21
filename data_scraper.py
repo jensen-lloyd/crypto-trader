@@ -18,7 +18,7 @@ time = str(datetime.now().time())[:5]
 def get_data():
 
     time = str(datetime.now().time())[:5]
-    print("\n\nTime: " + time + '\n')
+    print("Time: " + time + '\n')
 
     try:
         with open('BTCAUD_data.csv', mode='r') as BTCAUD_data:
@@ -99,7 +99,7 @@ def get_data():
     print(trading_volume)
 
     quote_volume = data["quoteVolume"]
-    print(quote_volume)
+    print(quote_volume + '\n\n')
 
 
     with open('BTCAUD_data.csv', mode='a', newline='') as BTCAUD_data:
