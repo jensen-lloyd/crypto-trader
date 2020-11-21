@@ -4,6 +4,7 @@ import smtplib
 import time
 from time import sleep
 from datetime import datetime
+import csv
 import requests
 import json
 import hashlib
