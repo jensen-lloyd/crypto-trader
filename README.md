@@ -18,7 +18,7 @@ then remove these 2 lines
 
 if time == "6:50": 
 
-  exit()
+    exit()
   
   
 in lines 116 & 117. You could also change the time if you wish.
