@@ -1,83 +1,21 @@
-#Get time & start getting prices
+THE MASTER PLAN!    
 
-repeat:
+Use data_scraper.py to get a few months worth of data to train on.
 
-    time = str(datetime.now().time())[:-10]
-    if time == "7:10":
-        quit()
+Use ANN_trainer.py to make ANN model from scratch in Python with Numpy libarary (No TF or Pytorch). 
+Save model as file (not sure which file type yet. Most likely either .csv or .txt) 
+Output from the network will be either:
+1 neuron, output 1 meaning price will go up, output 0 meaning price will go down
+2 neurons, one output being a predictor of buy, the other preducting sell, predicting the actual raw price.
 
-    if time[3:] == "00" or "15" or "30" or "45":
-        print("***BTC buy quote = BTC_buy & BTC sell quote = BTC_sell ---> Write each price to new line in files***\n")
+Use CryptoBot.py to get current data, run it through the model, and buy or sell based on the output from the ANN.
+Once everything is set up, only the CryptoBot.py script will be running, the other 2 scripts will run temporarily to a) get trainining data and b) train the model.
 
-    ***Get balance of AUD and BTC wallets***
-    ***BTC_wallet = (get BTC balance)***
-    ***AUD_wallet = (get AUD balance)***
-    ***if BTC_wallet > 0.001 and AUD_wallet < 10: trade_mode = sell_BTC***
-    ***if AUD_wallet > 10 and BTC_wallet < 0.001: trade_mode = buy_BTC***
-    trade_mode = "sell_BTC"
-    
-    if trade_mode == "sell_BTC":
-        ***get last " + str(moving_avg_points) + " sell prices from file***
-        sell_moving_avg_list = get last (moving_avg_points) lines from "sell" file and remove trailing newline
-        ***calculate average price (average_BTC_sell = add up all and divide by moving_avg_points)***
-        for i in range(moving_avg_points):
-                sell_moving_avg = int(sell_moving_avg_list[i-1]) + int(sell_moving_avg)
-        sell_moving_avg = int(sell_moving_avg)/int(moving_avg_points)
-                
-        ***if BTC_sell > average_BTC_sell: place sell order ***
+Plan for CryptoBot.py:
 
-        if BTC_sell < current price
-        emailSubject = ("Sell order placed.")
-        emailContent = ("A sell order was place at (time) for (btc)
-        sender.sendmail(sendTo, emailSubject, emailContent)
-        print("Email notification sent. \n")
+Import weights, biases etc from file
+Get app required data from Binance API
+Pass that data through a forward pass of the neural network function (copy the function from the ANN_trainer.py script)
+Take output from network and place either a buy or sell order.
 
-    if trade_mode == "buy_BTC":
-        ***get last " + str(moving_avg_points) + " sell prices from file***
-        buy_moving_avg_list = [get last (moving_avg_points) lines from "buy" file and remove trailing newline]
-        ***calculate average price (average_BTC_sell = add up all and divide by moving_avg_points)***
-        for i in range(moving_avg_points):
-                buy_moving_avg = int(buy_moving_avg_list[i-1]) + int(buy_moving_avg)
-        buy_moving_avg = int(buy_moving_avg)/int(moving_avg_points)
-        ***if BTC_sell > average_BTC_sell: place sell order ***
-    
-        emailSubject = ("Buy order placed.")
-        emailContent = ("A buy order was placed at " + time + ".          (" + trade_mode + ")")
-        sender.sendmail(sendTo, emailSubject, emailContent)
-        print("Email notification sent. \n")
-    
-
-
-    if time[3:] == "59" or "14" or "29" or "44":
-        ***See if there are any outstanding orders, if there are, cancel them.***
-        
-      
-      
-    sleep(120)
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-plan for neural network/machine learning rig:
-
-1. cheap pc with used parts and spend lots on a brand new gpu
-2. cheap pc with used parts and spend lots on a used gpu
-3. cheap pc with low end new parts and spend lots on a new gpu
-4. cheap pc with low end new parts and spend lots on a used gpu
-5. buy a crappy old used pc and slap a graphics card in it
-6. buy a crappy old laptop and get a mPCIe adapter, power supply (which i can re-use for the gaming pc when i build it) and a decent graphics card
-7. use mac mini/old laptop and get a mPCIe adapter, power supply (which i can re-use for the gaming pc when i build it) and a decent graphics card
-8. wait to save up for a decent gaming pc
-9. pay for cloud compute
-10. use school "gaming" laptops
+Make money! :) 
