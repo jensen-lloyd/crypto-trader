@@ -5,15 +5,12 @@ from time import sleep
 import csv
 
 
-try:
-    requests.get('https://api.binance.com/api/v3/ping').json()
-except:
-    print("Connection failed")
-
+requests.get('https://api.binance.com/api/v3/ping').json()
 
 time = str(datetime.now().time())[:5]
 
 symbol = "BTCAUD"
+
 
 def get_data():
 
@@ -47,15 +44,16 @@ def get_data():
             writer = csv.writer(BTCAUD_data)
             writer.writerow(["0", "0", raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
 
+
     with open('BTCAUD_data.csv', mode='r') as BTCAUD_data:
         reader = csv.reader(BTCAUD_data, delimiter=',')
-        data = list(reader)[-1]
+        file_data = list(reader)[-1]
 
-    previous_sell_price = data[8]
-    previous_buy_price = data[10]
+    previous_sell_price = file_data[7]
+    previous_buy_price = file_data[9]
 
     print(previous_sell_price)
-    print(previous_buy_price)
+    print(previous_buy_price + "\n\n")
 
     data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": symbol}).json()
 
@@ -106,7 +104,7 @@ def get_data():
         writer = csv.writer(BTCAUD_data)
 
         writer.writerow([bid_price, ask_price])
-        writer.writerow([previous_sell_price, previous_buy_price, raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
+        writer.writerow([previous_buy_price, previous_sell_price, raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
 
 
 def main():
@@ -116,7 +114,7 @@ def main():
     if time == "6:50":
         exit()
 
-    if time[3:] == "03":
+    if time[3:] == "00":
         get_data()
 
     if time[3:] == "15":
