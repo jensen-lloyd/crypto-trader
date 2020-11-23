@@ -51,8 +51,8 @@ def get_data():
         reader = csv.reader(BTCAUD_data, delimiter=',')
         data = list(reader)[-1]
 
-    previous_buy_price = data[6]
     previous_sell_price = data[8]
+    previous_buy_price = data[10]
 
     print(previous_sell_price)
     print(previous_buy_price)
@@ -106,7 +106,7 @@ def get_data():
         writer = csv.writer(BTCAUD_data)
 
         writer.writerow([bid_price, ask_price])
-        writer.writerow([previous_buy_price, previous_sell_price, raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
+        writer.writerow([previous_sell_price, previous_buy_price, raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
 
 
 def main():
@@ -116,7 +116,7 @@ def main():
     if time == "6:50":
         exit()
 
-    if time[3:] == "00":
+    if time[3:] == "03":
         get_data()
 
     if time[3:] == "15":
