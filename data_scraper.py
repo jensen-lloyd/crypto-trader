@@ -103,7 +103,6 @@ def get_data():
     with open('BTCAUD_data.csv', mode='a', newline='') as BTCAUD_data:
         writer = csv.writer(BTCAUD_data)
 
-        writer.writerow([bid_price, ask_price])
         writer.writerow([previous_buy_price, previous_sell_price, raw_price_change, price_change_percent, weighted_avg, last_price, last_qty, bid_price, bid_qty, ask_price, ask_qty, open_price, high_price, low_price, trading_volume, quote_volume])
 
 
