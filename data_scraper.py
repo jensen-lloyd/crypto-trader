@@ -52,9 +52,6 @@ def get_data():
     previous_sell_price = file_data[7]
     previous_buy_price = file_data[9]
 
-    print(previous_sell_price)
-    print(previous_buy_price + "\n\n")
-
     data = requests.get('https://api.binance.com/api/v3/ticker/24hr', {"symbol": symbol}).json()
 
     raw_price_change = data["priceChange"]
