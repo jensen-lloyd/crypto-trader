@@ -107,9 +107,6 @@ def main():
 
     time = str(datetime.now().time())[:5]
 
-    # if time == "6:50":
-    #     exit()
-
     if time[3:] == "00":
         get_data()
 
